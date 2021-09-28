@@ -4,6 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_calendar.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_community.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_info.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_map.xml" value="0.1" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_walk.xml" value="0.1" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_main.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_main2.xml" value="0.12864583333333332" />
       </map>
     </option>
   </component>
