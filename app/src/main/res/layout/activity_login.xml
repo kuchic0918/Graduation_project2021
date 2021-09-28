@@ -50,12 +50,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="비밀번호 재설정" />
-        <Button
-            android:id="@+id/checkButton2"
-            android:onClick="onClickLog"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="rr" />
     </LinearLayout>
 
 </LinearLayout>
