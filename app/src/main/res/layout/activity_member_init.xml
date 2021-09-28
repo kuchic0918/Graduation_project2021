@@ -20,6 +20,7 @@
         android:orientation="vertical"
         android:padding="10dp">
 
+
         <EditText
             android:id="@+id/nameEditText"
             android:layout_width="match_parent"

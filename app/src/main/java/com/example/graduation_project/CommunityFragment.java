@@ -9,8 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.a15_graduation.R;
-
 public class CommunityFragment extends Fragment{
     ViewGroup viewGroup;
     @Nullable

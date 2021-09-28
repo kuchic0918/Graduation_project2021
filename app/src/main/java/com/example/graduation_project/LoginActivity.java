@@ -32,6 +32,12 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.gotoPasswordResetButton).setOnClickListener(onClickListener);
     }
 
+    public void onClickLog(View view){ //로그인으로 들어감
+        Intent login = new Intent(getApplicationContext(), MainActivity2.class);
+        startActivity(login);
+
+    }
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {

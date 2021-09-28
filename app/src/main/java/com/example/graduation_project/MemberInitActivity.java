@@ -1,5 +1,6 @@
 package com.example.graduation_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -29,6 +30,7 @@ public class MemberInitActivity extends AppCompatActivity {
 
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
     }
+
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
