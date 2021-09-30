@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/navigation_community"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:checked="true"
+        android:icon="@drawable/icon"
+        app:itemIconTint="@drawable/item_color"
+        android:title="커뮤니티" />
+
+    <item
+        android:id="@+id/navigation_walk"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/icon"
+        app:itemIconTint="@drawable/item_color"
+        android:title="산책" />
+
+    <item
+        android:id="@+id/navigation_map"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/icon"
+        app:itemIconTint="@drawable/item_color"
+        android:title="지도" />
+
+    <item
+        android:id="@+id/navigation_info"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/icon"
+        app:itemIconTint="@drawable/item_color"
+        android:title="내정보" />
+
+    <item
+        android:id="@+id/navigation_calendar"
+        app:showAsAction="always"
+        android:enabled="true"
+        android:icon="@drawable/icon"
+        app:itemIconTint="@drawable/item_color"
+        android:title="달력" />
+
+</menu>
