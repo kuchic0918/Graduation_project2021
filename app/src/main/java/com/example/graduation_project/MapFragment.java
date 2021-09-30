@@ -28,6 +28,7 @@ import com.naver.maps.map.widget.CompassView;
 import com.naver.maps.map.widget.LocationButtonView;
 import com.naver.maps.map.widget.ScaleBarView;
 import com.naver.maps.map.widget.ZoomControlView;
+import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
     List<LatLng> lstLatLng = new ArrayList<>();
+    private SlidingUpPanelLayout mainPanel;
 
     public MapFragment() { }
 
