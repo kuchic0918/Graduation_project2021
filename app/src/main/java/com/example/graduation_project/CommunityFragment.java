@@ -21,27 +21,6 @@ public class CommunityFragment extends Fragment {
         return viewGroup;
     }
 
-    ImageView imageView = (ImageView) getView().findViewById(R.id.floatingActionButton);
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.floatingActionButton:
-                startActivity(CommunityActivity.class);
-                    break;
-
-
-
-            }
-
-        }
-
-
-    };
-
-    private void startActivity(Class<CommunityActivity> communityActivityClass) {
-    }
 }
 
 
