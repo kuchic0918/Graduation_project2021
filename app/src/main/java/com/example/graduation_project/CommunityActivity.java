@@ -8,6 +8,6 @@ public class CommunityActivity extends  MainActivity2 {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
-
+//dddddddddd
     }
 }
