@@ -13,8 +13,8 @@
 
         <ImageView
             android:id="@+id/imageInfoTitle"
-            android:layout_width="359dp"
-            android:layout_height="57dp"
+            android:layout_width="361dp"
+            android:layout_height="56dp"
             android:src="@drawable/info_title"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
