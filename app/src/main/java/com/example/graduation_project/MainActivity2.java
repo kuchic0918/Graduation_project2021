@@ -29,6 +29,7 @@ public class MainActivity2 extends AppCompatActivity {
         fragment4 = new InfoFragment();
         fragment5 = new CalendarFragment();
 
+
         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,fragment1).commitAllowingStateLoss();
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,6 +39,8 @@ public class MainActivity2 extends AppCompatActivity {
                     case R.id.navigation_community : {
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,fragment1).commitAllowingStateLoss();
                         return true;
+
+
                     }
 
                     case R.id.navigation_walk : {
@@ -65,4 +68,5 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
     }
+
 }
