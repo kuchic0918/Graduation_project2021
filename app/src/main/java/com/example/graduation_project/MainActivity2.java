@@ -1,6 +1,7 @@
 package com.example.graduation_project;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -22,6 +23,9 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide(); //액션바 숨기기
 
         fragment1 = new CommunityFragment();
         fragment2 = new WalkFragment();
