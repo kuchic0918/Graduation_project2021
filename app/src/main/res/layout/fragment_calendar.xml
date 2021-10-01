@@ -43,8 +43,8 @@
 
         <EditText
             android:id="@+id/contextEditText"
-            android:layout_width="461dp"
-            android:layout_height="86dp"
+            android:layout_width="348dp"
+            android:layout_height="78dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
