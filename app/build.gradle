@@ -52,5 +52,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.android.gms:play-services-location:18.0.0'
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0' //프로필 원형
+
 }
 apply plugin: 'com.google.gms.google-services'
