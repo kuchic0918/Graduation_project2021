@@ -10,9 +10,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       android:src="@drawable/commnuity_title" />
+        android:src="@drawable/commnuity_title" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -25,9 +25,8 @@
         android:clickable="true"
         android:src="@drawable/ic_baseline_add_24"
         app:backgroundTint="#E4C28E"
-        app:fabSize="auto"
-        app:maxImageSize="24dp"
+
         app:useCompatPadding="false"
-        tools:ignore="SpeakableTextPresentCheck" />
+         />
 
 </FrameLayout>
