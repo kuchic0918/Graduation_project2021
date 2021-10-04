@@ -38,11 +38,11 @@
 
         <TextView
             android:id="@+id/userId"
-            android:layout_width="97dp"
-            android:layout_height="34dp"
+            android:layout_width="198dp"
+            android:layout_height="24dp"
             android:text="사용자"
             android:textAlignment="center"
-            android:textSize="20sp"
+            android:textSize="15sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
@@ -63,7 +63,7 @@
             app:layout_constraintVertical_bias="0.235">
 
             <TextView
-                android:id="@+id/textView12"
+                android:id="@+id/info_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="정보 수정"
@@ -93,7 +93,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/logout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="로그아웃"

@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +27,10 @@ public class MemberInitActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide(); //액션바 숨기기
+
         setContentView(R.layout.activity_member_init);
 
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
@@ -34,6 +39,7 @@ public class MemberInitActivity extends AppCompatActivity {
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
+
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.checkButton:
