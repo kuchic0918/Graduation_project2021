@@ -19,10 +19,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class MemberInitActivity extends AppCompatActivity {
     private static final String TAG = "MemberInitActivity";
+    private EditText edName, edPhoneNumber, edBirthDay, edAddress;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,18 @@ public class MemberInitActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member_init);
 
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
+
+        //데이터 가져와보기
+
+
+
+        edName = findViewById(R.id.nameEditText);
+        edPhoneNumber = findViewById(R.id.phoneNumberEditText);
+        edBirthDay = findViewById(R.id.birthDayEditText);
+        edAddress = findViewById(R.id.addressEditText);
+
+
+        //     데이터
     }
 
 
@@ -89,4 +104,5 @@ public class MemberInitActivity extends AppCompatActivity {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
 }
