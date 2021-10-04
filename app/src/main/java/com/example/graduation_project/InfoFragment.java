@@ -1,5 +1,7 @@
 package com.example.graduation_project;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -49,7 +51,7 @@ public class InfoFragment extends Fragment{
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
-                getActivity().startActivityForResult(intent,101);
+                startActivityForResult(intent,101);
             }
         });
 
@@ -74,17 +76,18 @@ public class InfoFragment extends Fragment{
 
     //image
     @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        //super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == getActivity().RESULT_OK) {
-            if(resultCode == 101) {
-                ContentResolver contentResolver = getActivity().getContentResolver();
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 101) {
+           if(resultCode == RESULT_OK) {
                 try {
-                    InputStream inputStream = contentResolver.openInputStream(data.getData());
+                    InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
+
                     imageProfile.setImageBitmap(image);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
+                    Toast.makeText(getActivity().getApplicationContext(), "이미지 변경", Toast.LENGTH_LONG).show();
+                } catch (Exception e) {
+                   e.printStackTrace();
                     Toast.makeText(getActivity().getApplicationContext(), "이미지 로드 오류", Toast.LENGTH_LONG).show();
                 }
             }
