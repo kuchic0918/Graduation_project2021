@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:src="@drawable/commnuity_title" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+    <Button
+        android:id="@+id/button"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="bottom|right"
