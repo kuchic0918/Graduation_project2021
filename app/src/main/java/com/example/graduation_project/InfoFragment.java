@@ -3,11 +3,13 @@ package com.example.graduation_project;
 import static android.app.Activity.RESULT_OK;
 
 import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +23,23 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -35,6 +47,7 @@ public class InfoFragment extends Fragment{
     ViewGroup viewGroup;
     ImageView imageProfile;
     TextView userName;
+
 
     private static final String TAG = "MainActivity"; //logout
 
@@ -71,6 +84,7 @@ public class InfoFragment extends Fragment{
 
 
 
+
         return viewGroup;
     }
 
@@ -86,6 +100,26 @@ public class InfoFragment extends Fragment{
 
                     imageProfile.setImageBitmap(image);
                     Toast.makeText(getActivity().getApplicationContext(), "이미지 변경", Toast.LENGTH_LONG).show();
+                    //firebase profile
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    Uri u = user.getPhotoUrl();
+
+                    db.collection("users").document(user.getUid()).set(u)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.w(TAG, "Error writing document", e);
+                                }
+                            });
+
+                    //f        p
                 } catch (Exception e) {
                    e.printStackTrace();
                     Toast.makeText(getActivity().getApplicationContext(), "이미지 로드 오류", Toast.LENGTH_LONG).show();
@@ -94,6 +128,16 @@ public class InfoFragment extends Fragment{
         }
     }
     //image
+
+
+    //firebase profile
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+    //f        p
 
 
     //logout
@@ -120,5 +164,8 @@ public class InfoFragment extends Fragment{
     }
 
     //logout
+
+
+
     
 }

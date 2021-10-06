@@ -19,13 +19,22 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.protobuf.Value;
 
 public class MemberInitActivity extends AppCompatActivity {
     private static final String TAG = "MemberInitActivity";
     private EditText edName, edPhoneNumber, edBirthDay, edAddress;
     private FirebaseAuth mAuth;
+    private String name, phonenum, birthday, address;
+   // DataSnapshot dataSnapshot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +49,42 @@ public class MemberInitActivity extends AppCompatActivity {
 
         //데이터 가져와보기
 
-
-
         edName = findViewById(R.id.nameEditText);
         edPhoneNumber = findViewById(R.id.phoneNumberEditText);
         edBirthDay = findViewById(R.id.birthDayEditText);
         edAddress = findViewById(R.id.addressEditText);
+
+        //-----------------
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference df = database.getReference();
+        df.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    MemberInfo memberInfo = ds.getValue(MemberInfo.class);
+                    name = memberInfo.getName();
+                    phonenum = memberInfo.getPhoneNumber();
+                    birthday = memberInfo.getBirthDay();
+                    address = memberInfo.getAddress();
+                    edName.setText(name);
+                    edPhoneNumber.setText(phonenum);
+                    edBirthDay.setText(birthday);
+                    edAddress.setText(address);
+                    startToast("회원정보");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+
+
+
+        //-----------------
 
 
         //     데이터
@@ -76,6 +115,8 @@ public class MemberInitActivity extends AppCompatActivity {
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address);
 
+
+
             if(user != null){
                 db.collection("users").document(user.getUid()).set(memberInfo)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -104,5 +145,14 @@ public class MemberInitActivity extends AppCompatActivity {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
+    //getinfo
+    //-----------------
+
+
+
+
+    //-----------------
+    //getinfo
 
 }
