@@ -1,48 +1,48 @@
 package com.example.graduation_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class CommunityFragment extends Fragment {
+public class CommunityFragment extends Fragment implements View.OnClickListener {
     ViewGroup viewGroup;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community, container, false);
-        return viewGroup;
+    public CommunityFragment() {
+
     }
 
-    ImageView imageView = (ImageView) getView().findViewById(R.id.floatingActionButton);
 
-    View.OnClickListener onClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.floatingActionButton:
-                startActivity(CommunityActivity.class);
-                    break;
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_community, container, false);
 
-
+        Button btn = (Button) view.findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CommunityActivity.class);
+                startActivity(intent);
 
             }
+        });
+        return view;
 
-        }
+    }
 
+    @Override
+    public void onClick(View view) {
 
-    };
-
-    private void startActivity(Class<CommunityActivity> communityActivityClass) {
     }
 }
+
 
 
 

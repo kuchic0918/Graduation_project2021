@@ -44,10 +44,10 @@ public class MemberInitActivity extends AppCompatActivity {
     };
 
     private void profileUpdate() {
-        String name = ((EditText)findViewById(R.id.nameEditText)).getText().toString();
-        String phoneNumber = ((EditText)findViewById(R.id.phoneNumberEditText)).getText().toString();
-        String birthDay = ((EditText)findViewById(R.id.birthDayEditText)).getText().toString();
-        String address = ((EditText)findViewById(R.id.addressEditText)).getText().toString();
+        final String name = ((EditText)findViewById(R.id.nameEditText)).getText().toString();
+        final String phoneNumber = ((EditText)findViewById(R.id.phoneNumberEditText)).getText().toString();
+        final String birthDay = ((EditText)findViewById(R.id.birthDayEditText)).getText().toString();
+        final String address = ((EditText)findViewById(R.id.addressEditText)).getText().toString();
 
         if(name.length() > 0 && phoneNumber.length() > 9 && birthDay.length() > 5 && address.length() > 0){
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
