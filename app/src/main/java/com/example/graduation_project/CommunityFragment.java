@@ -10,18 +10,39 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.fragment.NavHostFragment;
 
-public class CommunityFragment extends Fragment{
+public class CommunityFragment extends Fragment implements View.OnClickListener {
     ViewGroup viewGroup;
-    @Nullable
+
+    public CommunityFragment() {
+
+    }
+
+
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_community,container,false);
-        return viewGroup;
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_community, container, false);
+
+        Button btn = (Button) view.findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), CommunityActivity.class);
+                startActivity(intent);
+
+            }
+        });
+        return view;
+
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 }
+
 
 
 
