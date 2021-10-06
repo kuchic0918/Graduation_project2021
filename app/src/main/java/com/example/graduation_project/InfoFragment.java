@@ -72,15 +72,18 @@ public class InfoFragment extends Fragment{
         viewGroup.findViewById(R.id.logout).setOnClickListener(onClickListener);
         viewGroup.findViewById(R.id.info_edit).setOnClickListener(onClickListener);
 
-        //set user name
+        //set user name & profile photo
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getEmail();
             userName = viewGroup.findViewById(R.id.userId);
             userName.setText(name);
-
+            Uri uri = user.getPhotoUrl();
+            imageProfile.setImageURI(uri);
         }
         //set user name
+
+
 
 
 
@@ -99,25 +102,24 @@ public class InfoFragment extends Fragment{
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
 
                     imageProfile.setImageBitmap(image);
-                    Toast.makeText(getActivity().getApplicationContext(), "이미지 변경", Toast.LENGTH_LONG).show();
+
                     //firebase profile
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    Uri u = user.getPhotoUrl();
+                    Context context = getContext();
+                    Uri u = getImageUri(context, image);
 
-                    db.collection("users").document(user.getUid()).set(u)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void aVoid) {
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setPhotoUri(u)
+                            .build();
 
+                    user.updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Log.w(TAG, "Error writing document", e);
-                                }
-                            });
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getActivity().getApplicationContext(),"이미지 변경", Toast.LENGTH_LONG).show();}}});
+
 
                     //f        p
                 } catch (Exception e) {
