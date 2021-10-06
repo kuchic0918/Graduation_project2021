@@ -9,7 +9,7 @@
     tools:context=".MapFragment"
     android:gravity="bottom"
     app:umanoDragView="@id/slide_layout"
-    app:umanoPanelHeight="260dp"
+    app:umanoPanelHeight="250dp"
     app:umanoOverlay="true">
 
     <FrameLayout
@@ -20,48 +20,111 @@
         <com.naver.maps.map.MapView
             android:id="@+id/navermap"
             android:layout_width="match_parent"
-            android:layout_height="400dp"/>
+            android:layout_height="440dp"/>
 
     </FrameLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:background="#00000000"
         android:id="@+id/slide_layout"
         android:layout_width="match_parent"
-        android:layout_height="400dp">
+        android:layout_height="400dp"
+        android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <View
+        android:id="@+id/swipe"
+        android:background="@drawable/swipe_tip_background"
+        android:layout_width="60dp"
+        android:layout_height="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="#FCF5E5">
+    <RelativeLayout
+        android:background="@drawable/drawer_background"
+        android:layout_width="match_parent"
+        android:layout_height="600dp">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="산책시작"
-                    android:textColor="#000"
-                    android:gravity="center"
-                    android:textSize="25sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
+    <Chronometer
+        android:id="@+id/et_placeName"
+        android:background="@drawable/edittext_background"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:padding="10dp"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_below="@+id/et_placeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ss"
+        android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="산책시작" />
-            </LinearLayout>
+        <Button
+            android:id="@+id/startbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시작"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"/>
 
+        <Button
+            android:id="@+id/stopbutton"
+            android:layout_alignLeft="@id/startbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="중지"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"/>
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/resetbutton"
+            android:layout_alignLeft="@id/stopbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="초기화"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ss"
+        android:gravity="center_horizontal">
+
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/capbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="촬영"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            tools:ignore="NotSibling"/>
+
+    </LinearLayout>
+
+    </RelativeLayout>
+    </LinearLayout>
 
 </com.sothree.slidinguppanel.SlidingUpPanelLayout>
