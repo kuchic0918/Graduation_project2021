@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +18,7 @@
             android:value="1gsptfryrl"/>
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".MainActivity2"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme">
@@ -45,13 +44,10 @@
         </activity>
         <activity android:name=".MemberInitActivity">
         </activity>
-        <activity android:name=".MainActivity2">
+        <activity android:name=".SplashActivity">
         </activity>
         <activity android:name=".CommunityActivity">
         </activity>
-        <activity android:name=".GalleryActivity">
-        </activity>
-
     </application>
 
 </manifest>

@@ -12,7 +12,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/commnuity_title" />
+       android:src="@drawable/commnuity_title" />
 
     <Button
         android:id="@+id/button"

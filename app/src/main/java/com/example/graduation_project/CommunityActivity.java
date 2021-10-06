@@ -92,8 +92,8 @@ public class CommunityActivity extends AppCompatActivity  {
         public void onClick(View view) {
             switch (view.getId()){
                 case R.id.check:
-                storageUpload();
-                        break;
+                    storageUpload();
+                    break;
                 case R.id.image:
                     myStartActivity(GalleryActivity.class, "image");
                     break;
