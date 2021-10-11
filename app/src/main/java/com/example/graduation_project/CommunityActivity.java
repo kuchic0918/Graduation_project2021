@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
@@ -50,6 +51,9 @@ public class CommunityActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide(); //액션바 숨기기
 
         parent = findViewById(R.id.contentsLayout);
 

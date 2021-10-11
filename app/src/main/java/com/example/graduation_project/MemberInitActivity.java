@@ -25,12 +25,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
 
 
 public class MemberInitActivity extends AppCompatActivity {
     private static final String TAG = "MemberInitActivity";
     private EditText edName, edPhoneNumber, edBirthDay, edAddress;
     private String name, phonenum, birthday, address, email;
+
    // DataSnapshot dataSnapshot;
 
     @Override
@@ -54,30 +56,32 @@ public class MemberInitActivity extends AppCompatActivity {
         edBirthDay = findViewById(R.id.birthDayEditText);
         edAddress = findViewById(R.id.addressEditText);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference df = database.getReference("users");
-
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final DatabaseReference df = database.getReference();
         //-----------------
 
 
         df.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-               for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        if(ds.child("email").getValue().equals(email)) {
+                User user = dataSnapshot.getValue(User.class);
+                if (user != null) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
                         edName.setText(ds.child("name").getValue(String.class));
                         edPhoneNumber.setText(ds.child("phoneNumber").getValue(String.class));
                         edBirthDay.setText(ds.child("birthDay").getValue(String.class));
                         edAddress.setText(ds.child("address").getValue(String.class));
                         startToast("회원정보");
+
                     }
                 }
             }
+                @Override
+                public void onCancelled (@NonNull DatabaseError error){
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                }
 
-            }
 
         });
 
