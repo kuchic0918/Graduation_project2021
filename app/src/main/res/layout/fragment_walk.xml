@@ -7,9 +7,6 @@
     tools:context=".WalkFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="104dp"
-        android:layout_height="88dp"
-        android:text="walk fragment" />
+
 
 </FrameLayout>
