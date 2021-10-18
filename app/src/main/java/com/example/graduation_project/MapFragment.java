@@ -153,17 +153,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
     public void onMapReady(@NonNull NaverMap naverMap) {
         //배경 지도 선택
         mNaverMap = naverMap;
-        mNaverMap.setLocationSource(mLocationSource);
+        naverMap.setLocationSource(mLocationSource);
+        requestPermissions(PERMISSIONS, PERMISSION_REQUEST_CODE);
 
-        UiSettings uiSettings = mNaverMap.getUiSettings();
+        UiSettings uiSettings = naverMap.getUiSettings();
         uiSettings.setCompassEnabled(true);
         uiSettings.setScaleBarEnabled(true);
         uiSettings.setZoomControlEnabled(true);
         uiSettings.setLocationButtonEnabled(true);
         uiSettings.setLogoGravity(Gravity.LEFT|Gravity.BOTTOM);
-
-        requestPermissions(PERMISSIONS, PERMISSION_REQUEST_CODE);
-
     }
 
     @Override
@@ -172,12 +170,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
             if(!mLocationSource.isActivated()) {
                 mNaverMap.setLocationTrackingMode(LocationTrackingMode.None);
                 return;
-            } else {
+            } else{
                 mNaverMap.setLocationTrackingMode(LocationTrackingMode.Follow);
             }
         }
 
-        super.onRequestPermissionsResult(requestCode,permissions,grantResults);
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
