@@ -35,7 +35,6 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
     TextView text;
     XmlPullParser xpp;
 
-    String Key = "476a50796468797537376751587151";
     String data;
     ViewGroup viewGroup;
     @Nullable
@@ -65,8 +64,7 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                text.setText(data);
-                            }
+                                text.setText(data); }
                         });
                     }
                 }).start();
@@ -79,7 +77,7 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
         String location = URLEncoder.encode(str);
         String query="%EC%A0%84%EB%A0%A5%EB%A1%9C";
 
-        String queryUrl="http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=15&keyword=동물병원&where="+location;
+        String queryUrl="http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=30&keyword=동물병원&where="+location;
         try{
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is= url.openStream(); //url위치로 입력스트림 연결
@@ -125,7 +123,6 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
                             xpp.next();
                             buffer.append(xpp.getText());//telephone 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer.append("\n");//줄바꿈 문자 추가
-
                         }
                         break;
 
