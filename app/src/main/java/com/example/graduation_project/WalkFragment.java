@@ -35,6 +35,7 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
     TextView text;
     XmlPullParser xpp;
 
+    String Key = "476a50796468797537376751587151";
     String data;
     ViewGroup viewGroup;
     @Nullable
@@ -64,7 +65,8 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                text.setText(data); }
+                                text.setText(data);
+                            }
                         });
                     }
                 }).start();
@@ -77,7 +79,7 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
         String location = URLEncoder.encode(str);
         String query="%EC%A0%84%EB%A0%A5%EB%A1%9C";
 
-        String queryUrl="http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=30&keyword=동물병원&where="+location;
+        String queryUrl="http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=15&keyword=동물병원&where="+location;
         try{
             URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
             InputStream is= url.openStream(); //url위치로 입력스트림 연결
@@ -101,28 +103,32 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
 
                         if(tag.equals("item")) ;// 첫번째 검색결과
                         else if(tag.equals("title")){
-                            buffer.append("병원 이름 : ");
+                            buffer.append("\n");//줄바꿈 문자 추가
+                            buffer.append(" [ 병원 이름 ] \n \t \t ");
                             xpp.next();
                             buffer.append(xpp.getText());//title 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer.append("\n"); //줄바꿈 문자 추가
                         }
                         else if(tag.equals("venue")){
-                            buffer.append("주소 : ");
+                            buffer.append(" [ 주소 ]  \n \t \t");
                             xpp.next();
                             buffer.append(xpp.getText());//category 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer.append("\n");//줄바꿈 문자 추가
                         }
                         else if(tag.equals("reference")){
-                            buffer.append("전화번호 :");
+                            buffer.append(" [ 전화번호 ] \n \t \t");
                             xpp.next();
                             buffer.append(xpp.getText());//description 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer.append("\n");//줄바꿈 문자 추가
                         }
                         else if(tag.equals("state")){
-                            buffer.append("영업 상태 :");
+                            buffer.append(" [ 영업 상태 ] \n \t \t");
                             xpp.next();
                             buffer.append(xpp.getText());//telephone 요소의 TEXT 읽어와서 문자열버퍼에 추가
                             buffer.append("\n");//줄바꿈 문자 추가
+                            buffer.append("\n");//줄바꿈 문자 추가
+                            buffer.append("---------------------------------------------------------");//줄바꿈 문자 추가
+
                         }
                         break;
 
@@ -146,5 +152,3 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
 
     }//getXmlData method....
 }
-
-

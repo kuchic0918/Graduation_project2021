@@ -1,47 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:background="#FCF5E5">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:weightSum="10">
+        android:layout_height="match_parent">
 
-        <EditText
-            android:id="@+id/edit"
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
-            android:hint="시/군 입력"/>
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:background="#F6DFAB"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.003">
 
-        <Button
-            android:id="@+id/button"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:text="검색"
-            android:textSize="12sp"
-            android:onClick="mOnClick"/>
+            <EditText
+                android:id="@+id/edit"
+                android:layout_width="230dp"
+                android:layout_height="45dp"
+                android:layout_margin="10dp"
+                android:hint="시/군 입력" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/button"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginLeft="20dp"
+                android:onClick="mOnClick"
+                android:text="검색"
+                android:textSize="12sp" />
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="140dp">
+        </LinearLayout>
 
-        <TextView
-            android:background="@drawable/out"
-            android:id="@+id/result"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="15sp"
-            android:textStyle="bold"/>
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="339dp"
+            android:layout_height="380dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="3dp"
+            android:background="#Fff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.08">
 
-    </ScrollView>
+            <TextView
+                android:id="@+id/result"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </LinearLayout>

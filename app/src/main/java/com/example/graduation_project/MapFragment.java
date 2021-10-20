@@ -5,11 +5,16 @@ import static android.app.Activity.RESULT_OK;
 import android.Manifest;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Paint;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
@@ -17,6 +22,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 
@@ -31,6 +37,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Chronometer;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.naver.maps.geometry.LatLng;
 import com.naver.maps.map.LocationTrackingMode;
@@ -52,7 +60,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class MapFragment extends Fragment implements OnMapReadyCallback
+public class MapFragment extends Fragment implements OnMapReadyCallback, SensorEventListener
 {
     private MapView mapView;
     private NaverMap mNaverMap;
@@ -63,10 +71,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
             Manifest.permission.ACCESS_COARSE_LOCATION
     };
     List<LatLng> lstLatLng = new ArrayList<>();
-    private Chronometer chronometer;
+    private Chronometer chronometer_t;
     private boolean running;
     private long pauseOffset;
     private Button startBtn, stopBtn, resetBtn, CapBtn;
+    //--------------------------------------
+    SensorManager sensorManager;
+    Sensor stepCountSensor;
+    TextView stepCountView;
+    int currentSteps = 0;
+    //--------------------------------------
 
     public MapFragment() { }
 
@@ -95,8 +109,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
         mapView.getMapAsync(this);
         mLocationSource = new FusedLocationSource(this,PERMISSION_REQUEST_CODE);
 
-        chronometer = rootView.findViewById(R.id.et_placeName);
-        chronometer.setFormat("시간: %s");
+        chronometer_t = rootView.findViewById(R.id.et_placeName);
+        chronometer_t.setFormat("시간: %s");
+        //------------------------
+
+        stepCountView = rootView.findViewById(R.id.et_placeStep);
+        stepCountView.setText("걸음 수 : "+currentSteps);
+
+        sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+        stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
+
+        //------------------------
 
         startBtn = rootView.findViewById(R.id.startbutton);
         stopBtn = rootView.findViewById(R.id.stopbutton);
@@ -114,10 +137,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 if(!running) {
-                    chronometer.setBase(SystemClock.elapsedRealtime() - pauseOffset);
-                    chronometer.start();
+                    chronometer_t.setBase(SystemClock.elapsedRealtime() - pauseOffset);
+                    chronometer_t.start();
                     running = true;
+                    //-----------------
+                    s_onStart();
+                    //-----------------
                 }
+
             }
         });
 
@@ -125,10 +152,11 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
                 if(running) {
-                    chronometer.stop();
-                    pauseOffset = SystemClock.elapsedRealtime() - chronometer.getBase();
+                    chronometer_t.stop();
+                    pauseOffset = SystemClock.elapsedRealtime() - chronometer_t.getBase();
                     running = false;
                 }
+
             }
         });
 
@@ -136,8 +164,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
             @Override
             public void onClick(View view) {
 
-                    chronometer.setBase(SystemClock.elapsedRealtime());
+                    chronometer_t.setBase(SystemClock.elapsedRealtime());
                     pauseOffset = 0;
+                    //-------------------
+                    currentSteps = 0;
+                    stepCountView.setText("걸음 수 : "+currentSteps);
+                    //-----------------------------------------
             }
         });
 
@@ -228,5 +260,44 @@ public class MapFragment extends Fragment implements OnMapReadyCallback
         super.onLowMemory();
         mapView.onLowMemory();
     }
+
+    //--------------------------
+    public void s_onStart() {
+        super.onStart();
+        if (stepCountSensor == null) {
+            Toast.makeText(getActivity().getApplicationContext(), "No Step Sensor", Toast.LENGTH_SHORT).show();
+        }
+        if(stepCountSensor !=null) {
+            // 센서 속도 설정
+            // * 옵션
+            // - SENSOR_DELAY_NORMAL: 20,000 초 딜레이
+            // - SENSOR_DELAY_UI: 6,000 초 딜레이
+            // - SENSOR_DELAY_GAME: 20,000 초 딜레이
+            // - SENSOR_DELAY_FASTEST: 딜레이 없음
+            //
+            sensorManager.registerListener(this,stepCountSensor,SensorManager.SENSOR_DELAY_FASTEST);
+        }
+    }
+
+    public void onSensorChanged(SensorEvent event) {
+        // 걸음 센서 이벤트 발생시
+        if(event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR && running == true){
+
+            if(event.values[0]==1.0f){
+                // 센서 이벤트가 발생할때 마다 걸음수 증가
+                currentSteps++;
+                stepCountView.setText("걸음 수 : "+currentSteps);
+            }
+
+        }
+
+    }
+
+
+
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+    //--------------------------
 
 }
