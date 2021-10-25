@@ -111,7 +111,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SensorE
 
         chronometer_t = rootView.findViewById(R.id.et_placeName);
         chronometer_t.setFormat("시간: %s");
-        //------------------------
+        //------------------------만보계
 
         stepCountView = rootView.findViewById(R.id.et_placeStep);
         stepCountView.setText("걸음 수 : "+currentSteps);
@@ -261,13 +261,13 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SensorE
         mapView.onLowMemory();
     }
 
-    //--------------------------
+    //--------------------------만보계
     public void s_onStart() {
         super.onStart();
         if (stepCountSensor == null) {
             Toast.makeText(getActivity().getApplicationContext(), "No Step Sensor", Toast.LENGTH_SHORT).show();
         }
-        if(stepCountSensor !=null) {
+        else if(stepCountSensor !=null) {
             // 센서 속도 설정
             // * 옵션
             // - SENSOR_DELAY_NORMAL: 20,000 초 딜레이
@@ -279,12 +279,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SensorE
         }
     }
 
+    @Override
     public void onSensorChanged(SensorEvent event) {
         // 걸음 센서 이벤트 발생시
         if(event.sensor.getType() == Sensor.TYPE_STEP_DETECTOR && running == true){
 
-            if(event.values[0]==1.0f){
+            switch(event.sensor.getType()){
                 // 센서 이벤트가 발생할때 마다 걸음수 증가
+                case Sensor.TYPE_STEP_DETECTOR :
                 currentSteps++;
                 stepCountView.setText("걸음 수 : "+currentSteps);
             }
