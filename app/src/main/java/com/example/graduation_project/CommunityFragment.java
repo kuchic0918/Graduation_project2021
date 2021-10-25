@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class CommunityFragment extends Fragment implements View.OnClickListener {
+public class CommunityFragment extends Fragment {
     ViewGroup viewGroup;
 
     public CommunityFragment() {
@@ -37,14 +37,7 @@ public class CommunityFragment extends Fragment implements View.OnClickListener 
 
     }
 
-    @Override
-    public void onClick(View view) {
-
-    }
 }
-
-
-
 
 
 
