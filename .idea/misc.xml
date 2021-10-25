@@ -3,29 +3,54 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_gallery.xml" value="0.19479166666666667" />
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_init.xml" value="0.20208333333333334" />
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_community.xml" value="0.2046875" />
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_info.xml" value="0.2046875" />
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/item_gallery.xml" value="0.2046875" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_community.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_init.xml" value="0.33" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_login.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_main.xml" value="0.29528985507246375" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_main2.xml" value="0.25" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_member_init.xml" value="0.29528985507246375" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_password_reset.xml" value="0.29528985507246375" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_sign_up.xml" value="0.29528985507246375" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_calendar.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_community.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_info.xml" value="0.29528985507246375" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_map.xml" value="0.29528985507246375" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_walk.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/admin/AndroidStudioProjects/Graduation_Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_calendar.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_community.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_info.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_map.xml" value="0.1" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_walk.xml" value="0.1" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2713541666666667" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable/button_stamp_background.xml" value="0.14375" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable/drawer_background.xml" value="0.14375" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable/edittext_background.xml" value="0.14375" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.14739583333333334" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable/item_color.xml" value="0.14375" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable/s.xml" value="0.14375" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/drawable/swipe_tip_background.xml" value="0.14895833333333333" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_camera.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_community.xml" value="0.2552083333333333" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_init.xml" value="0.12864583333333332" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_main.xml" value="0.12864583333333332" />
-        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_main2.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_main2.xml" value="0.1" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_member_init.xml" value="0.1" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_password_reset.xml" value="0.12864583333333332" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/activity_sign_up.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/fragment_calendar.xml" value="0.13125" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/fragment_camera2_basic.xml" value="0.2552083333333333" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/fragment_community.xml" value="0.1328125" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/fragment_info.xml" value="0.12916666666666668" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/fragment_map.xml" value="0.1" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/layout/fragment_walk.xml" value="0.1328125" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/menu/bottom_nav_menu.xml" value="0.12864583333333332" />
+        <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project1/app/src/main/res/xml/provider_paths.xml" value="0.2552083333333333" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

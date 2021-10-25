@@ -45,18 +45,38 @@
         android:layout_width="match_parent"
         android:layout_height="600dp">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sss"
+            android:orientation="horizontal">
+
     <Chronometer
         android:id="@+id/et_placeName"
         android:background="@drawable/edittext_background"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="5dp"
         android:padding="10dp"/>
 
+            <TextView
+                android:id="@+id/et_placeStep"
+                android:background="@drawable/edittext_background"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="30dp"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
     <LinearLayout
-        android:layout_below="@+id/et_placeName"
+        android:layout_below="@+id/sss"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/ss"

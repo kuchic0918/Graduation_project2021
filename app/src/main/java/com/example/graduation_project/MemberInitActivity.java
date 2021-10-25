@@ -12,20 +12,28 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.firestore.DocumentReference;
+
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.auth.User;
+
 
 public class MemberInitActivity extends AppCompatActivity {
     private static final String TAG = "MemberInitActivity";
     private EditText edName, edPhoneNumber, edBirthDay, edAddress;
-    private FirebaseAuth mAuth;
+    private String name, phonenum, birthday, address, email;
+
+   // DataSnapshot dataSnapshot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,17 +46,52 @@ public class MemberInitActivity extends AppCompatActivity {
 
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
 
-        //데이터 가져와보기
+        //데이터 가져와보기----------------------------------------------------------------------------
 
-
+        Intent intent = getIntent();
+        email = intent.getStringExtra("email");
 
         edName = findViewById(R.id.nameEditText);
         edPhoneNumber = findViewById(R.id.phoneNumberEditText);
         edBirthDay = findViewById(R.id.birthDayEditText);
         edAddress = findViewById(R.id.addressEditText);
 
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final DatabaseReference df = database.getReference();
+        //-----------------
 
-        //     데이터
+
+        df.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                if (user != null) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        edName.setText(ds.child("name").getValue(String.class));
+                        edPhoneNumber.setText(ds.child("phoneNumber").getValue(String.class));
+                        edBirthDay.setText(ds.child("birthDay").getValue(String.class));
+                        edAddress.setText(ds.child("address").getValue(String.class));
+                        startToast("회원정보");
+
+                    }
+                }
+            }
+                @Override
+                public void onCancelled (@NonNull DatabaseError error){
+
+                }
+
+
+        });
+
+
+
+
+        //-----------------
+
+
+        //     데이터--------------------------------------------------------------------------------
     }
 
 
@@ -75,6 +118,8 @@ public class MemberInitActivity extends AppCompatActivity {
 
             FirebaseFirestore db = FirebaseFirestore.getInstance();
             MemberInfo memberInfo = new MemberInfo(name, phoneNumber, birthDay, address);
+
+
 
             if(user != null){
                 db.collection("users").document(user.getUid()).set(memberInfo)
@@ -104,5 +149,61 @@ public class MemberInitActivity extends AppCompatActivity {
 
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
+
+    //getinfo
+    //-----------------------------------------------------------------------------------------------
+    /* test 1
+    public void getUserData(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference df = database.getReference();
+        df.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    MemberInfo memberInfo = ds.getValue(MemberInfo.class);
+                    name = memberInfo.getName();
+                    phonenum = memberInfo.getPhoneNumber();
+                    birthday = memberInfo.getBirthDay();
+                    address = memberInfo.getAddress();
+                    edName.setText(name);
+                    edPhoneNumber.setText(phonenum);
+                    edBirthDay.setText(birthday);
+                    edAddress.setText(address);
+                    startToast("회원정보");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
+    }
+    */
+
+
+/* test 2
+
+    private void getUserData(){
+
+        DatabaseReference df = FirebaseDatabase.getInstance().getReference();
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String uid = user.getUid();
+        df.child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                edName.setText(snapshot.child("name").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+*/
+    //----------------------------------------------------------------------------------------------
+    //getinfo
 
 }

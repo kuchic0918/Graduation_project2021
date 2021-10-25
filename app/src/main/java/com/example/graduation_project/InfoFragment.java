@@ -2,13 +2,13 @@ package com.example.graduation_project;
 
 import static android.app.Activity.RESULT_OK;
 
-import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,20 +21,22 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.auth.UserProfileChangeRequest;
+
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.io.FileNotFoundException;
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class InfoFragment extends Fragment{
     ViewGroup viewGroup;
     ImageView imageProfile;
     TextView userName;
+
 
     private static final String TAG = "MainActivity"; //logout
 
@@ -59,15 +61,19 @@ public class InfoFragment extends Fragment{
         viewGroup.findViewById(R.id.logout).setOnClickListener(onClickListener);
         viewGroup.findViewById(R.id.info_edit).setOnClickListener(onClickListener);
 
-        //set user name
+        //set user name & profile photo
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             String name = user.getEmail();
             userName = viewGroup.findViewById(R.id.userId);
             userName.setText(name);
-
+            Uri uri = user.getPhotoUrl();
+            imageProfile.setImageURI(uri);
         }
         //set user name
+
+
+
 
 
 
@@ -85,7 +91,26 @@ public class InfoFragment extends Fragment{
                     Bitmap image = BitmapFactory.decodeStream(inputStream);
 
                     imageProfile.setImageBitmap(image);
-                    Toast.makeText(getActivity().getApplicationContext(), "이미지 변경", Toast.LENGTH_LONG).show();
+
+                    //firebase profile
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    FirebaseFirestore db = FirebaseFirestore.getInstance();
+                    Context context = getContext();
+                    Uri u = getImageUri(context, image);
+
+                    UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                            .setPhotoUri(u)
+                            .build();
+
+                    user.updateProfile(profileUpdates)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(getActivity().getApplicationContext(),"이미지 변경", Toast.LENGTH_LONG).show();}}});
+
+
+                    //f        p
                 } catch (Exception e) {
                    e.printStackTrace();
                     Toast.makeText(getActivity().getApplicationContext(), "이미지 로드 오류", Toast.LENGTH_LONG).show();
@@ -94,6 +119,16 @@ public class InfoFragment extends Fragment{
         }
     }
     //image
+
+
+    //bitmap -> url
+    public Uri getImageUri(Context inContext, Bitmap inImage) {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
+        return Uri.parse(path);
+    }
+    //b     -> u
 
 
     //logout
@@ -120,5 +155,8 @@ public class InfoFragment extends Fragment{
     }
 
     //logout
+
+
+
     
 }
