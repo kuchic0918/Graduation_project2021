@@ -39,12 +39,13 @@ public class LoginActivity extends AppCompatActivity {
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            switch (v.getId()){
+            switch (v.getId()) {
                 case R.id.loginButton:
                     login();
                     break;
                 case R.id.gotoPasswordResetButton:
                     myStartActivity(PasswordResetActivity.class);
+                    break;
             }
         }
     };
