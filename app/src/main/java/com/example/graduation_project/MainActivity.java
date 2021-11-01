@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         findViewById(R.id.logoutButton).setOnClickListener(onClickListener);
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {

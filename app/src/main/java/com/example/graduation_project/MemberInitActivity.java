@@ -47,7 +47,7 @@ public class MemberInitActivity extends AppCompatActivity {
         findViewById(R.id.checkButton).setOnClickListener(onClickListener);
 
         //데이터 가져와보기----------------------------------------------------------------------------
-
+/*
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
 
@@ -59,6 +59,8 @@ public class MemberInitActivity extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final DatabaseReference df = database.getReference();
+
+
         //-----------------
 
 
@@ -87,7 +89,7 @@ public class MemberInitActivity extends AppCompatActivity {
 
 
 
-
+*/
         //-----------------
 
 

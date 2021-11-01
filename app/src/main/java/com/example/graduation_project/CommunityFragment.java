@@ -46,6 +46,3 @@ public class CommunityFragment extends Fragment {
 
 
 
-
-
-

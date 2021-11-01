@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.graduation_project">
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
-    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+
+    <!-- 스텝 감지 센서 사용 설정 -->
+    <uses-feature android:name="android.hardware.sensor.stepdetector" />
+
 
     <application
         android:allowBackup="true"
@@ -15,8 +21,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Graduation_Project"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/Theme.Graduation_Project">
 
         <meta-data android:name="com.naver.maps.map.CLIENT_ID"
             android:value="1gsptfryrl"/>
@@ -50,10 +55,8 @@
         <activity android:name=".MemberInitActivity">
         </activity>
         <activity android:name=".CommunityActivity">
-        </activity>
-        <activity android:name=".GalleryActivity">
-        </activity>
 
+        </activity>
     </application>
 
 </manifest>
