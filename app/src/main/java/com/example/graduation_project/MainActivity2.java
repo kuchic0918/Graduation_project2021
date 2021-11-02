@@ -27,9 +27,6 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
 
-        String nickName = getIntent().getStringExtra("nickName");
-        Intent intent = getIntent();
-
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide(); //액션바 숨기기
 

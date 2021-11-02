@@ -59,9 +59,6 @@
         <activity android:name=".CommunityActivity">
 
         </activity>
-        <activity android:name=".MainActivity">
-
-        </activity>
     </application>
 
 </manifest>
