@@ -38,37 +38,33 @@
                 android:id="@+id/button"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
-                android:layout_marginTop="7dp"
                 android:layout_marginLeft="20dp"
+                android:layout_marginTop="7dp"
                 android:onClick="mOnClick"
                 android:text="검색"
                 android:textSize="12sp" />
 
         </LinearLayout>
 
-        <ScrollView
-            android:id="@+id/scrollView2"
-            android:layout_width="339dp"
-            android:layout_height="380dp"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="3dp"
-            android:background="#Fff"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="420dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.533"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0.08">
+            android:layout_marginBottom="160dp">
 
-            <TextView
-                android:id="@+id/result"
+            <ListView
+
+                android:id="@+id/listview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="15sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent">
 
-        </ScrollView>
+            </ListView>
+
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

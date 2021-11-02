@@ -29,126 +29,132 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class WalkFragment extends Fragment implements View.OnClickListener {
+    ListView listView;
+    ArrayAdapter adapter;
     EditText edit;
-    TextView text;
-    XmlPullParser xpp;
 
-    String Key = "476a50796468797537376751587151";
-    String data;
+    ArrayList<String> items = new ArrayList<String>();
     ViewGroup viewGroup;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_walk, container, false);
 
-        edit = viewGroup.findViewById(R.id.edit);
-        text = viewGroup.findViewById(R.id.result);
-
         Button btn = viewGroup.findViewById(R.id.button);
         btn.setOnClickListener(this);
+        edit = viewGroup.findViewById(R.id.edit);
+
+        listView = viewGroup.findViewById(R.id.listview);
+        adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, items);
+        //원래 layout을 .xml을 만들어야 하지만 예제이므로 안드로이에서 제공하는 것(android.R.layout.simple_list_item_1)을 사용
+        listView.setAdapter(adapter);
         return viewGroup;
     }
 
 
-    @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.button:
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        data=getXmlData();
+            //네트워크를 통해서 xml문서를 읽어오기..
+            new Thread() {
+                @Override
+                public void run() {
 
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                text.setText(data);
+                    items.clear();
+                    String str = edit.getText().toString();
+                    String location = URLEncoder.encode(str);
+                    String adress = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=15&keyword=동물병원&where=" + location;
+
+
+
+                    try {
+
+                        URL url = new URL(adress);
+
+
+                        InputStream is = url.openStream(); //바이트스트림
+                        InputStreamReader isr = new InputStreamReader(is);
+
+                        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                        XmlPullParser xpp = factory.newPullParser();
+                        xpp.setInput(isr);
+
+                        int eventType = xpp.getEventType();
+
+                        String tagName;
+                        StringBuffer buffer = null;
+
+                        while (eventType != XmlPullParser.END_DOCUMENT) {
+
+                            switch (eventType) {
+                                case XmlPullParser.START_TAG:
+                                    tagName = xpp.getName();
+                                    if (tagName.equals("item")) {
+                                        buffer = new StringBuffer();
+
+                                    } else if (tagName.equals("title")) {
+                                        buffer.append("[ 병원 이름 ] : ");
+                                        xpp.next();
+                                        buffer.append(xpp.getText() + "\n");
+
+
+                                    } else if (tagName.equals("venue")) {
+                                        buffer.append("[ 주소 ] : ");
+                                        xpp.next();
+                                        buffer.append(xpp.getText() + "\n");
+
+                                    } else if (tagName.equals("reference")) {
+                                        buffer.append("[ 전화번호 ] : ");
+                                        xpp.next();
+                                        buffer.append(xpp.getText() + "\n");
+
+                                    } else if (tagName.equals("state")) {
+                                        buffer.append("[ 영업 상태 ] : ");
+                                        xpp.next();
+                                        buffer.append(xpp.getText() + "\n");
+                                        buffer.append("------------------------------------------------------------------");
+                                    }
+                                    break;
+
+                                case XmlPullParser.TEXT:
+                                    break;
+
+                                case XmlPullParser.END_TAG:
+                                    tagName = xpp.getName();
+                                    if (tagName.equals("item")) {
+
+                                        items.add(buffer.toString());
+
+                                        getActivity().runOnUiThread(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                adapter.notifyDataSetChanged();
+                                            }
+                                        });
+                                    }
+                                    break;
                             }
-                        });
+
+                            eventType = xpp.next();
+                        }
+
+
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (XmlPullParserException e) {
+                        e.printStackTrace();
                     }
-                }).start();
-                break;
+
+
+                }
+            }.start();
         }
     }
-    String getXmlData(){
-        StringBuffer buffer=new StringBuffer();
-        String str= edit.getText().toString();//EditText에 작성된 Text얻어오기
-        String location = URLEncoder.encode(str);
-        String query="%EC%A0%84%EB%A0%A5%EB%A1%9C";
-
-        String queryUrl="http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=15&keyword=동물병원&where="+location;
-        try{
-            URL url= new URL(queryUrl);//문자열로 된 요청 url을 URL 객체로 생성.
-            InputStream is= url.openStream(); //url위치로 입력스트림 연결
-
-            XmlPullParserFactory factory= XmlPullParserFactory.newInstance();//xml파싱을 위한
-            XmlPullParser xpp= factory.newPullParser();
-            xpp.setInput( new InputStreamReader(is, "UTF-8") ); //inputstream 으로부터 xml 입력받기
-
-            String tag;
-
-            xpp.next();
-            int eventType= xpp.getEventType();
-            while( eventType != XmlPullParser.END_DOCUMENT ){
-                switch( eventType ){
-                    case XmlPullParser.START_DOCUMENT:
-                        buffer.append("파싱 시작...\n\n");
-                        break;
-
-                    case XmlPullParser.START_TAG:
-                        tag= xpp.getName();//테그 이름 얻어오기
-
-                        if(tag.equals("item")) ;// 첫번째 검색결과
-                        else if(tag.equals("title")){
-                            buffer.append("\n");//줄바꿈 문자 추가
-                            buffer.append(" [ 병원 이름 ] \n \t \t ");
-                            xpp.next();
-                            buffer.append(xpp.getText());//title 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                            buffer.append("\n"); //줄바꿈 문자 추가
-                        }
-                        else if(tag.equals("venue")){
-                            buffer.append(" [ 주소 ]  \n \t \t");
-                            xpp.next();
-                            buffer.append(xpp.getText());//category 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                            buffer.append("\n");//줄바꿈 문자 추가
-                        }
-                        else if(tag.equals("reference")){
-                            buffer.append(" [ 전화번호 ] \n \t \t");
-                            xpp.next();
-                            buffer.append(xpp.getText());//description 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                            buffer.append("\n");//줄바꿈 문자 추가
-                        }
-                        else if(tag.equals("state")){
-                            buffer.append(" [ 영업 상태 ] \n \t \t");
-                            xpp.next();
-                            buffer.append(xpp.getText());//telephone 요소의 TEXT 읽어와서 문자열버퍼에 추가
-                            buffer.append("\n");//줄바꿈 문자 추가
-                            buffer.append("\n");//줄바꿈 문자 추가
-                            buffer.append("---------------------------------------------------------");//줄바꿈 문자 추가
-
-                        }
-                        break;
-
-                    case XmlPullParser.TEXT:
-                        break;
-
-                    case XmlPullParser.END_TAG:
-                        tag= xpp.getName(); //테그 이름 얻어오기
-
-                        if(tag.equals("item")) buffer.append("\n");// 첫번째 검색결과종료..줄바꿈
-                        break;
-                }
-
-                eventType= xpp.next();
-            }
-
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return buffer.toString();//StringBuffer 문자열 객체 반환
-
-    }//getXmlData method....
 }
