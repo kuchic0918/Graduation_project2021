@@ -142,6 +142,21 @@
             android:padding="5dp"
             tools:ignore="NotSibling"/>
 
+        <Button
+            android:layout_gravity="center"
+            android:id="@+id/sendCButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="종료"
+            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:padding="5dp"
+            tools:ignore="NotSibling"/>
+
+
     </LinearLayout>
 
     </RelativeLayout>

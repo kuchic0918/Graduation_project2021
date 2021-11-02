@@ -1,6 +1,7 @@
 package com.example.graduation_project;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -31,6 +33,7 @@ public class CalendarFragment extends Fragment {
     public Button save_Btn;
     public String str = null;
     public String f_name = null;
+    int t = 0;
 
     @Nullable
     @Override
@@ -46,9 +49,37 @@ public class CalendarFragment extends Fragment {
         del_Btn = viewGroup.findViewById(R.id.del_Btn);
         save_Btn = viewGroup.findViewById(R.id.save_Btn);
 
+        Bundle bundle = this.getArguments();
+
+        //--------------------------------get step
+
+        //Bundle bundle = this.getArguments();
+
+        if(bundle != null){
+            int step = bundle.getInt("step");
+            String sStep = Integer.toString(step);
+            Toast.makeText(getActivity().getApplicationContext(), sStep + "걸음 걸었습니다.", Toast.LENGTH_LONG).show();
+
+            calendarView.setDate(System.currentTimeMillis(),false,true);
+
+            textView.setVisibility(View.VISIBLE); // 저장된 일기 textView가 visible
+            textView.setText("----------산책 종료!---------- \n *오늘 걸은 걸음 수 : " + sStep); // EditText에 공백값 넣기
+
+
+        }
+       // else
+       //     Toast.makeText(getActivity().getApplicationContext(), "error", Toast.LENGTH_LONG).show();
+
+
+        //----------------------------------
+
+
+
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+
+
                 diaryTextView.setVisibility(View.VISIBLE);
                 save_Btn.setVisibility(View.VISIBLE); // 저장 버튼이 Visible
                 contextEditText.setVisibility(View.VISIBLE); // EditText가 Visible
@@ -58,9 +89,35 @@ public class CalendarFragment extends Fragment {
                 diaryTextView.setText(String.format("%d / %d / %d",year,month+1,dayOfMonth));
                 contextEditText.setText(""); // EditText에 공백값 넣기
                 checkDay(year,month,dayOfMonth);
+
+                if(bundle != null) {
+                    t = bundle.getInt("t");
+                    if (t == 1 ) {
+
+                        int step = bundle.getInt("step");
+                        String sStep = Integer.toString(step);
+                        Toast.makeText(getActivity().getApplicationContext(), sStep + "걸음 걸었습니다.", Toast.LENGTH_LONG).show();
+                        save_Btn.setVisibility(View.VISIBLE); // 저장 버튼이 Visible
+                        contextEditText.setVisibility(View.VISIBLE); // EditText가 Visible
+                        textView.setVisibility(View.INVISIBLE); // 저장된 일기 textView가 Invisible
+                        cha_Btn.setVisibility(View.INVISIBLE); // 수정 Button이 Invisible
+                        del_Btn.setVisibility(View.INVISIBLE); // 삭제 Button이 Invisible
+                        contextEditText.setText("오늘 걸은 걸음 수 : " + sStep);
+
+                        calendarView.setDate(System.currentTimeMillis(), false, true);
+                        t++;
+                    }
+                }
+
             }
 
+
+
+
         });
+
+
+
 
 
         save_Btn.setOnClickListener(new View.OnClickListener() {
@@ -77,6 +134,7 @@ public class CalendarFragment extends Fragment {
 
             }
         });
+
 
         return viewGroup;
     }
@@ -169,6 +227,25 @@ public class CalendarFragment extends Fragment {
         }
 
     }
+
+    //----------------------------------------get step num
+    /*
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 101) {//InputActivity 넘어져 온 경우
+            if(resultCode == getActivity().RESULT_OK) {
+                String sStep = data.getStringExtra("steps");
+
+                Toast.makeText(getActivity().getApplicationContext(), sStep + "걸음 걸었습니다.", Toast.LENGTH_LONG).show();
+            } else
+                Toast.makeText(getActivity().getApplicationContext(), "error", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+     */
+    //---------------------------------------------------
 
 }
 

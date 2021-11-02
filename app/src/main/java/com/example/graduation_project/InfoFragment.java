@@ -94,9 +94,18 @@ public class InfoFragment extends Fragment{
 
                     //firebase profile
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    FirebaseFirestore db = FirebaseFirestore.getInstance();
-                    Context context = getContext();
-                    Uri u = getImageUri(context, image);
+                    //Context context = getContext();
+
+                    //Uri u = getImageUri(context, image);
+
+                    //uri-----------------------------------
+
+                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                    image.compress(Bitmap.CompressFormat.JPEG,100,bytes);
+                    String path = MediaStore.Images.Media.insertImage(getActivity().getApplicationContext().getContentResolver(), image, "title", "");
+                    Uri u = Uri.parse(path);
+
+                    //uri------------------------------------
 
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setPhotoUri(u)
@@ -113,7 +122,7 @@ public class InfoFragment extends Fragment{
                     //f        p
                 } catch (Exception e) {
                    e.printStackTrace();
-                    Toast.makeText(getActivity().getApplicationContext(), "이미지 로드 오류", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "이미지 로드 오류"+e, Toast.LENGTH_LONG).show();
                 }
             }
         }
