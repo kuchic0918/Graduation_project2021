@@ -74,13 +74,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SensorE
     private Chronometer chronometer_t;
     private boolean running;
     private long pauseOffset;
-    private Button startBtn, stopBtn, resetBtn, CapBtn;
+    private Button startBtn, stopBtn, resetBtn, CapBtn, endBtn;
     //--------------------------------------
     SensorManager sensorManager;
     Sensor stepCountSensor;
     TextView stepCountView;
     int currentSteps = 0;
     //--------------------------------------
+    CalendarFragment fragment;
 
     public MapFragment() { }
 
@@ -119,6 +120,29 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SensorE
         sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
         stepCountSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_DETECTOR);
 
+        //------------------------
+
+        //------------------------종료 버튼
+        fragment = new CalendarFragment();
+
+        endBtn = rootView.findViewById(R.id.sendCButton);
+        endBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("step", currentSteps);
+                bundle.putInt("t", 1);
+                fragment.setArguments(bundle);
+                /*
+                Intent intent = new Intent();
+                intent.putExtra("steps",currentSteps);
+                getActivity().setResult(RESULT_OK, intent);
+                getActivity().finish();
+
+                 */
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.main_layout,fragment).commitAllowingStateLoss();
+            }
+        });
         //------------------------
 
         startBtn = rootView.findViewById(R.id.startbutton);
@@ -301,5 +325,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, SensorE
 
     }
     //--------------------------
+
+
 
 }
