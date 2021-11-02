@@ -57,15 +57,9 @@ public class CommunityActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_community);
 
         Button image = (Button)findViewById(R.id.image);
-
-        image.setOnClickListener(new Button.OnClickListener(){
-            public void onClick(View view){
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivity(intent);
-            }
-        });
+        Button video = (Button)findViewById(R.id.video);
         findViewById(R.id.check).setOnClickListener(onClickListener);
+
 
     }
 
@@ -79,6 +73,12 @@ public class CommunityActivity extends AppCompatActivity  {
                 switch (v.getId()){
                     case R.id.check:
                         profileUpdate();
+                        break;
+                    case R.id.image:
+                    case R.id.video:
+                        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                        intent.setType("image/*");
+                        startActivity(intent);
                         break;
                 }
             }
@@ -118,6 +118,11 @@ public class CommunityActivity extends AppCompatActivity  {
 
         private void startToast(String msg) {
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        }
+            private void myStartActivity(Class c ,String media){
+            Intent intent = new Intent(this,c);
+
+            startActivityForResult(intent,0);
         }
 
     }

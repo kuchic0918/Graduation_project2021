@@ -68,7 +68,7 @@ public class InfoFragment extends Fragment{
             userName = viewGroup.findViewById(R.id.userId);
             userName.setText(name);
             Uri uri = user.getPhotoUrl();
-            imageProfile.setImageURI(uri);
+           // imageProfile.setImageURI(uri);
         }
         //set user name
 
