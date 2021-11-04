@@ -18,12 +18,10 @@
             android:ems="10"
             android:hint="이름"
             android:inputType="textPersonName"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/phoneNumberEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.358" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/phoneNumberEditText"
@@ -32,11 +30,10 @@
             android:ems="10"
             android:hint="전화번호"
             android:inputType="phone"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nameEditText"
-            app:layout_constraintVertical_bias="0.039" />
+            app:layout_constraintHorizontal_bias="0.495"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/birthDayEditText"
@@ -45,11 +42,10 @@
             android:ems="10"
             android:hint="생년월일"
             android:inputType="date"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText"
-            app:layout_constraintVertical_bias="0.071" />
+            app:layout_constraintTop_toBottomOf="@+id/addressEditText" />
 
         <EditText
             android:id="@+id/addressEditText"
@@ -58,23 +54,41 @@
             android:ems="10"
             android:hint="주소"
             android:inputType="textPostalAddress"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.495"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/birthDayEditText"
-            app:layout_constraintVertical_bias="0.104" />
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberEditText" />
+
+
 
         <Button
             android:id="@+id/checkButton"
             android:layout_width="200dp"
             android:layout_height="50dp"
+            android:layout_marginTop="32dp"
             android:text="확인"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addressEditText"
-            app:layout_constraintVertical_bias="0.335" />
+            app:layout_constraintTop_toBottomOf="@+id/birthDayEditText" />
+
+        <ImageView
+            android:id="@+id/userPhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/nameEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/add_user" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="426dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

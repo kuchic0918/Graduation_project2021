@@ -52,6 +52,17 @@
             app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
             app:layout_constraintVertical_bias="0.263" />
 
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/btn_google"
+            android:layout_width="209dp"
+            android:layout_height="58dp"
+            app:layout_constraintBottom_toTopOf="@+id/gotoPasswordResetButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.554"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginButton"
+            app:layout_constraintVertical_bias="0.425" />
+
         <Button
             android:id="@+id/gotoPasswordResetButton"
             android:layout_width="match_parent"
