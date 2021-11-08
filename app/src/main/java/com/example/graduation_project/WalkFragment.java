@@ -80,101 +80,100 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.button:
-            //네트워크를 통해서 xml문서를 읽어오기..
-            new Thread() {
-                @Override
-                public void run() {
+                //네트워크를 통해서 xml문서를 읽어오기..
+                new Thread() {
+                    @Override
+                    public void run() {
 
-                    items.clear();
-                    String str = edit.getText().toString();
-                    String location = URLEncoder.encode(str);
-                    String adress = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=15&keyword=동물병원&where=" + location;
-
-
-
-                    try {
-
-                        URL url = new URL(adress);
+                        items.clear();
+                        String str = edit.getText().toString();
+                        String location = URLEncoder.encode(str);
+                        String adress = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver03?serviceKey=c4f3567b-9b6d-4fc5-9a23-3f1749cccec4&pageNo=1&numOfRows=15&keyword=동물병원&where=" + location;
 
 
-                        InputStream is = url.openStream(); //바이트스트림
-                        InputStreamReader isr = new InputStreamReader(is);
 
-                        XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
-                        XmlPullParser xpp = factory.newPullParser();
-                        xpp.setInput(isr);
+                        try {
 
-                        int eventType = xpp.getEventType();
-
-                        String tagName;
-                        StringBuffer buffer = null;
-
-                        while (eventType != XmlPullParser.END_DOCUMENT) {
-
-                            switch (eventType) {
-                                case XmlPullParser.START_TAG:
-                                    tagName = xpp.getName();
-                                    if (tagName.equals("item")) {
-                                        buffer = new StringBuffer();
-
-                                    } else if (tagName.equals("title")) {
-                                        buffer.append("[ 병원 이름 ] : ");
-                                        xpp.next();
-                                        buffer.append(xpp.getText() + "\n");
+                            URL url = new URL(adress);
 
 
-                                    } else if (tagName.equals("venue")) {
-                                        buffer.append("[ 주소 ] : ");
-                                        xpp.next();
-                                        buffer.append(xpp.getText() + "\n");
+                            InputStream is = url.openStream(); //바이트스트림
+                            InputStreamReader isr = new InputStreamReader(is);
 
-                                    } else if (tagName.equals("reference")) {
-                                        buffer.append("[ 전화번호 ] : ");
-                                        xpp.next();
-                                        buffer.append(xpp.getText() + "\n");
+                            XmlPullParserFactory factory = XmlPullParserFactory.newInstance();
+                            XmlPullParser xpp = factory.newPullParser();
+                            xpp.setInput(isr);
 
-                                    } else if (tagName.equals("state")) {
-                                        buffer.append("[ 영업 상태 ] : ");
-                                        xpp.next();
-                                        buffer.append(xpp.getText() + "\n");
-                                        buffer.append("--------------------------------------------------------------");
-                                    }
-                                    break;
+                            int eventType = xpp.getEventType();
 
-                                case XmlPullParser.TEXT:
-                                    break;
+                            String tagName;
+                            StringBuffer buffer = null;
 
-                                case XmlPullParser.END_TAG:
-                                    tagName = xpp.getName();
-                                    if (tagName.equals("item")) {
+                            while (eventType != XmlPullParser.END_DOCUMENT) {
 
-                                        items.add(buffer.toString());
+                                switch (eventType) {
+                                    case XmlPullParser.START_TAG:
+                                        tagName = xpp.getName();
+                                        if (tagName.equals("item")) {
+                                            buffer = new StringBuffer();
 
-                                        getActivity().runOnUiThread(new Runnable() {
-                                            @Override
-                                            public void run() {
-                                                adapter.notifyDataSetChanged();
-                                            }
-                                        });
-                                    }
-                                    break;
+                                        } else if (tagName.equals("title")) {
+                                            buffer.append("\n [ 병원 이름 ] : ");
+                                            xpp.next();
+                                            buffer.append(xpp.getText() + "\n");
+
+
+                                        } else if (tagName.equals("venue")) {
+                                            buffer.append(" [ 주소 ] : ");
+                                            xpp.next();
+                                            buffer.append(xpp.getText() + "\n");
+
+                                        } else if (tagName.equals("reference")) {
+                                            buffer.append(" [ 전화번호 ] : ");
+                                            xpp.next();
+                                            buffer.append(xpp.getText() + "\n");
+
+                                        } else if (tagName.equals("state")) {
+                                            buffer.append(" [ 영업 상태 ] : ");
+                                            xpp.next();
+                                            buffer.append(xpp.getText() + "\n");
+                                        }
+                                        break;
+
+                                    case XmlPullParser.TEXT:
+                                        break;
+
+                                    case XmlPullParser.END_TAG:
+                                        tagName = xpp.getName();
+                                        if (tagName.equals("item")) {
+
+                                            items.add(buffer.toString());
+
+                                            getActivity().runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    adapter.notifyDataSetChanged();
+                                                }
+                                            });
+                                        }
+                                        break;
+                                }
+
+                                eventType = xpp.next();
                             }
 
-                            eventType = xpp.next();
+
+                        } catch (MalformedURLException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (XmlPullParserException e) {
+                            e.printStackTrace();
                         }
 
 
-                    } catch (MalformedURLException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (XmlPullParserException e) {
-                        e.printStackTrace();
                     }
-
-
-                }
-            }.start();
+                }.start();
         }
     }
 }
