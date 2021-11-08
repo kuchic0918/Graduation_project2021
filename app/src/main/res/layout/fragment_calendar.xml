@@ -28,23 +28,25 @@
             app:layout_constraintTop_toBottomOf="@+id/calendarView"
             app:layout_constraintVertical_bias="0.0" />
 
+
         <TextView
             android:id="@+id/D_textView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/contextEditText"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/contextEditText"
             app:layout_constraintTop_toTopOf="@+id/contextEditText"
-            android:visibility="invisible" />
-
+            app:layout_constraintVertical_bias="0.0" />
 
         <EditText
             android:id="@+id/contextEditText"
             android:layout_width="348dp"
-            android:layout_height="78dp"
+            android:layout_height="100dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginEnd="8dp"
@@ -54,10 +56,10 @@
             android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/calendarView"
-            app:layout_constraintVertical_bias="0.076" />
+            app:layout_constraintVertical_bias="0.077" />
 
         <Button
             android:id="@+id/cha_Btn"
@@ -104,8 +106,9 @@
 
         <CalendarView
             android:id="@+id/calendarView"
-            android:layout_width="364dp"
-            android:layout_height="303dp"
+            android:layout_width="384dp"
+            android:layout_height="366dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

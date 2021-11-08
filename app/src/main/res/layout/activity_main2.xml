@@ -11,8 +11,8 @@
     <FrameLayout
         android:id="@+id/main_layout"
         android:layout_width="match_parent"
-        android:layout_height="663dp"
-        android:layout_marginBottom="?attr/actionBarSize"/>
+        android:layout_height="680dp"
+        android:layout_marginBottom="?attr/actionBarSize" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
