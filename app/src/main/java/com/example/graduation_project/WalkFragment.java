@@ -137,7 +137,7 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
                                         buffer.append("[ 영업 상태 ] : ");
                                         xpp.next();
                                         buffer.append(xpp.getText() + "\n");
-                                        buffer.append("--------------------------------------------------------------------");
+                                        buffer.append("--------------------------------------------------------------");
                                     }
                                     break;
 
