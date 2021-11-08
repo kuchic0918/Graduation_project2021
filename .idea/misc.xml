@@ -3,19 +3,28 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/drawable/swipe_tip_background.xml" value="0.22135416666666666" />
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_community.xml" value="0.3269927536231884" />
-
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/drawable-anydpi/ic_like_black.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/drawable-anydpi/ic_liked.xml" value="0.22239583333333332" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/drawable/button_stamp_background.xml" value="0.21875" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_community.xml" value="0.20677083333333332" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_community_detail.xml" value="0.33" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_gallery.xml" value="0.19479166666666667" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_init.xml" value="0.20208333333333334" />
-        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_main.xml" value="0.1279128672745694" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_login.xml" value="0.19375" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_main.xml" value="0.20625" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_main2.xml" value="0.2640625" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_member_init.xml" value="0.19021739130434784" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_password_reset.xml" value="0.2640625" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/activity_sign_up.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_community.xml" value="0.2046875" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_info.xml" value="0.2046875" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_map.xml" value="0.20677083333333332" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_walk.xml" value="0.19427083333333334" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/item_gallery.xml" value="0.2046875" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/row_comments.xml" value="0.2630208333333333" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/row_community.xml" value="0.25" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.19427083333333334" />
+        <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/menu/menu_bar.xml" value="0.2640625" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2" />
         <entry key="..\:/Users/kuchi/AndroidStudioProjects/Graduation_Project/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.21041666666666667" />
         <entry key="..\:/Users/shkim/AndroidStudioProjects/Graduation_Project/app/src/main/res/layout/fragment_calendar.xml" value="0.12760416666666666" />

@@ -16,6 +16,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class SignUpActivity  extends AppCompatActivity {
     private FirebaseAuth mAuth;
@@ -33,6 +37,10 @@ public class SignUpActivity  extends AppCompatActivity {
 
         findViewById(R.id.signupbutton).setOnClickListener(onClickListener);
         findViewById(R.id.gotoLoginButton).setOnClickListener(onClickListener);
+
+
+
+
     }
 
     @Override
@@ -73,6 +81,24 @@ public class SignUpActivity  extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
+                                    String email = user.getEmail();
+                                    String uid = user.getUid();
+
+                                    HashMap<Object, String> hashMap = new HashMap<>();
+
+                                    hashMap.put("email",email);
+                                    hashMap.put("uid",uid);
+                                    hashMap.put("name","");
+                                    hashMap.put("image","");
+
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    //
+                                    DatabaseReference reference = database.getReference("Users");
+
+                                    reference.child(uid).setValue(hashMap);
+
+
+
                                     startToast("회원가입에 성공하였습니다.");
                                     myStartActivity(MemberInitActivity.class);
                                 } else {

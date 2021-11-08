@@ -32,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity {
         Intent intent = getIntent();
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide(); //액션바 숨기기
+       //액션바 숨기기
 
         fragment1 = new CommunityFragment();
         fragment2 = new WalkFragment();
