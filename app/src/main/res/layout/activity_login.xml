@@ -47,10 +47,10 @@
             android:text="로그인"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.552"
+            app:layout_constraintHorizontal_bias="0.554"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordEditText"
-            app:layout_constraintVertical_bias="0.263" />
+            app:layout_constraintVertical_bias="0.178" />
 
         <com.google.android.gms.common.SignInButton
             android:id="@+id/btn_google"
@@ -61,7 +61,7 @@
             app:layout_constraintHorizontal_bias="0.554"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginButton"
-            app:layout_constraintVertical_bias="0.425" />
+            app:layout_constraintVertical_bias="0.267" />
 
         <Button
             android:id="@+id/gotoPasswordResetButton"

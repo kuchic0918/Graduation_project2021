@@ -37,14 +37,13 @@
             app:layout_constraintVertical_bias="0.101" />
 
 
-
         <TextView
             android:id="@+id/userId"
-            android:layout_width="97dp"
+            android:layout_width="150dp"
             android:layout_height="34dp"
             android:text="사용자"
             android:textAlignment="center"
-            android:textSize="15sp"
+            android:textSize="13sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"

@@ -58,7 +58,7 @@ public class CalendarFragment extends Fragment {
         if(bundle != null){
             int step = bundle.getInt("step");
             String sStep = Integer.toString(step);
-            Toast.makeText(getActivity().getApplicationContext(), sStep + "걸음 걸었습니다.", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), sStep + "걸음 걸었습니다.", Toast.LENGTH_SHORT).show();
 
             calendarView.setDate(System.currentTimeMillis(),false,true);
 
