@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/action_add_post"
+        android:title="Add post"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add_white"/>
+
+    <item android:id="@+id/action_search_post"
+        android:icon="@drawable/ic_search_black"
+        android:title="검색"
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView"/>
+</menu>

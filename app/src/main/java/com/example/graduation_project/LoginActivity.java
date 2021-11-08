@@ -25,6 +25,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
 
@@ -130,6 +134,22 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         public void onComplete(@NonNull Task< AuthResult> task) {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = auth.getCurrentUser();
+                                String email = user.getEmail();
+                                String uid = user.getUid();
+
+                                HashMap<Object, String> hashMap = new HashMap<>();
+
+                                hashMap.put("email",email);
+                                hashMap.put("uid",uid);
+                                hashMap.put("name","");
+                                hashMap.put("image","");
+
+                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                //
+                                DatabaseReference reference = database.getReference("Users");
+
+                                reference.child(uid).setValue(hashMap);
+
                                 startToast("로그인에 성공하였습니다.");
                                 myStartActivity(MainActivity2.class);
                             } else {

@@ -6,6 +6,7 @@
         <item name="colorPrimaryVariant">#9E6401</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
+
         <item name="colorSecondary">#9E6401</item>
         <item name="colorSecondaryVariant">#F6DFAB</item>
         <item name="colorOnSecondary">#9E6401</item>
@@ -14,7 +15,7 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="SplashTheme" parent="@android:style/Theme.Light.NoTitleBar">
+    <style name="SplashTheme" parent="@android:style/Theme.Light">
         <item name="android:windowBackground">@drawable/splash</item>
         <item name="android:colorBackground">#F6DFAA</item>
     </style>
