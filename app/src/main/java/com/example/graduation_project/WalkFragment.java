@@ -1,10 +1,13 @@
 package com.example.graduation_project;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,10 +54,27 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
 
         listView = viewGroup.findViewById(R.id.listview);
         adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, items);
-        //원래 layout을 .xml을 만들어야 하지만 예제이므로 안드로이에서 제공하는 것(android.R.layout.simple_list_item_1)을 사용
+
         listView.setAdapter(adapter);
+        listView.setOnItemClickListener(listener);
         return viewGroup;
     }
+
+    AdapterView.OnItemClickListener listener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            String str = (String) adapterView.getAdapter().getItem(i);
+            int nIdx = str.indexOf("[ 전화번호 ]");
+            int nIdx2 = str.indexOf("[ 주소 ]");
+            String str1 = str.substring(nIdx+11,nIdx2-1);
+
+            Toast.makeText(getActivity(), str.substring(nIdx,nIdx2-1), Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+str1));
+            startActivity(intent);
+
+        }
+    };
 
 
     public void onClick(View view) {
@@ -117,7 +137,7 @@ public class WalkFragment extends Fragment implements View.OnClickListener {
                                         buffer.append("[ 영업 상태 ] : ");
                                         xpp.next();
                                         buffer.append(xpp.getText() + "\n");
-                                        buffer.append("------------------------------------------------------------------");
+                                        buffer.append("--------------------------------------------------------------------");
                                     }
                                     break;
 
